@@ -1,0 +1,144 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Portfolio</title>
+  <meta name="description" content="Minimal portfolio landing page with a professional project selector." />
+  <meta name="theme-color" content="#f3f3f3" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:; upgrade-insecure-requests; block-all-mixed-content" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" v-cloak :class="{ 'lang-switching': isLanguageSwitching }">
+    <header class="topbar">
+      <div class="wrap">
+        <a class="logo" href="#top">YOUR NAME</a>
+        <div class="topbar-controls">
+          <nav class="nav" :aria-label="t.navAria">
+            <a href="#about">{{ t.navAbout }}</a>
+            <a href="#projects">{{ t.navProjects }}</a>
+            <a href="#contact">{{ t.navContact }}</a>
+          </nav>
+          <button class="lang-btn" type="button" :aria-label="t.languageAria" @click="toggleLanguage">{{ t.languageButton }}</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero wrap">
+        <div class="hero-box">
+          <span class="tag">{{ t.heroTag }}</span>
+          <h1>{{ t.heroTitle }}</h1>
+          <p class="lead">{{ t.heroLead }}</p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">{{ t.heroPrimaryCta }}</a>
+            <a class="btn secondary" href="#contact">{{ t.heroSecondaryCta }}</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section wrap reveal">
+        <div class="section-head">
+          <h2>{{ t.aboutTitle }}</h2>
+          <p>{{ t.aboutSubtitle }}</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>{{ t.profileTitle }}</h3>
+            <p>{{ t.profileParagraph1 }}</p>
+            <p>{{ t.profileParagraph2 }}</p>
+          </article>
+          <aside class="panel">
+            <h3>{{ t.stackTitle }}</h3>
+            <ul>
+              <li v-for="item in t.stackItems" :key="item">{{ item }}</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="projects" class="section wrap reveal">
+        <div class="section-head">
+          <h2>{{ t.projectsTitle }}</h2>
+          <p>{{ t.projectsSubtitle }}</p>
+        </div>
+
+        <div class="selector" :aria-label="t.selectorAria">
+          <div class="selector-list" id="project-list" role="tablist" :aria-label="t.projectsTitle">
+            <button
+              v-for="(project, index) in projects"
+              :key="project.id"
+              type="button"
+              class="project-option"
+              :class="{ active: activeIndex === index }"
+              role="tab"
+              :aria-selected="activeIndex === index ? 'true' : 'false'"
+              @click="setProject(index)"
+            >
+              <span class="option-index">{{ project.id }}</span>
+              <span class="option-title">{{ project.title }}</span>
+              <span class="option-type">{{ project.type }}</span>
+            </button>
+          </div>
+
+          <div class="selector-stage">
+            <article class="stage-shell" id="stage" :class="{ switching: isSwitching }" aria-live="polite">
+              <div class="stage-top">
+                <h3 id="stage-title">{{ currentProject.title }}</h3>
+                <small id="stage-stack">{{ currentProject.stack }}</small>
+              </div>
+
+              <div>
+                <p class="stage-description" id="stage-description">{{ currentProject.description }}</p>
+                <div class="preview preview-spaced" aria-hidden="true">
+                  <div class="preview-main"></div>
+                  <div class="preview-side">
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stage-links">
+                <a class="stage-link" id="stage-live" :href="safeLiveUrl" rel="noopener noreferrer">{{ t.projectLive }}</a>
+                <a class="stage-link" id="stage-code" :href="safeCodeUrl" rel="noopener noreferrer">{{ t.projectCode }}</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section wrap reveal">
+        <div class="contact-card">
+          <div>
+            <h3>{{ t.contactTitle }}</h3>
+            <p>{{ t.contactSubtitle }}</p>
+          </div>
+          <div class="actions actions-compact">
+            <a class="btn primary" href="mailto:youremail@example.com">{{ t.contactEmail }}</a>
+            <a class="btn secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn secondary" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <small>{{ t.footerPrefix }} <span id="year"></span> YOUR NAME. {{ t.footerSuffix }}</small>
+    </footer>
+  </div>
+
+  <noscript>Este site precisa de JavaScript para carregar corretamente / This site requires JavaScript to render properly.</noscript>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
