@@ -1,99 +1,81 @@
 ﻿# Landing Page de Portfólio (EN/PT-BR)
 
-Landing page pessoal com foco em currículo e recrutamento, com visual minimalista, seletor de projetos e troca de idioma em tempo real (inglês e português brasileiro).
+Landing page pessoal para currículo/recrutamento com visual minimalista, seletor de projetos e troca de idioma em tempo real.
 
 ## Objetivo
 
 - Apresentar perfil profissional de forma direta.
 - Destacar projetos com descrição, stack e links.
 - Funcionar bem em desktop e celular.
-- Aplicar boas práticas de segurança para site estático.
+- Separar claramente camadas de frontend e backend.
 
-## Tecnologias
+## Stack
 
 - HTML5
 - CSS3
 - JavaScript (Vue 3 via CDN)
+- Node.js (server HTTP nativo)
 
 ## Estrutura do Projeto
 
-- `main.html`: estrutura da página, marcação e bindings Vue.
-- `styles.css`: estilo visual, layout responsivo e animações.
-- `script.js`: estado reativo, i18n (EN/PT-BR), seletor de projetos e saneamento de dados.
-- `SECURITY.md`: guia de segurança da aplicação e hosting.
-- `nginx-security.conf`: exemplo de configuração Nginx com headers e hardening.
+- `frontend/index.html`: estrutura da interface.
+- `frontend/styles.css`: estilos e responsividade.
+- `frontend/js/app.js`: estado Vue e renderização da UI.
+- `frontend/api/portfolioApi.js`: client de API do frontend.
+- `backend/server/server.js`: servidor HTTP e rotas da API.
+- `backend/server/portfolioData.js`: conteúdo de textos/projetos por idioma.
+- `SECURITY.md`: resumo de hardening e limites de segurança.
+- `nginx-security.conf`: baseline para hardening em Nginx (opcional).
 
-## Funcionalidades Principais
+## Separação Front e Back
+
+- Frontend (API):
+  - O frontend não carrega mais conteúdo hardcoded principal da página.
+  - Ele consulta `GET /api/portfolio?lang=en|pt-BR` via `frontend/api/portfolioApi.js`.
+
+- Backend (Server):
+  - O servidor fica em `backend/server/server.js`.
+  - Ele entrega arquivos estáticos do `frontend/` e responde as rotas `/api/*`.
+
+## Funcionalidades
 
 - Seletor de projetos com transição suave.
-- Botão de idioma no topo (`PT-BR` / `EN`) sem uso de tradutor automático.
-- Troca de idioma com atualização de:
-  - navegação
-  - hero
-  - seção sobre
-  - seção de projetos
-  - seção de contato
-  - rodapé
-  - `title`, `meta description` e `lang` do documento
-- Layout adaptado para mobile com:
-  - navegação horizontal utilizável no topo
-  - alvos de toque adequados
-  - seletor de projetos com rolagem horizontal e snap
+- Botão de idioma (`PT-BR` / `EN`) sem tradutor automático.
+- Troca de idioma atualizando navegação, hero, sobre, projetos, contato e metadados do documento.
+- Layout adaptado para celular e desktop.
 
 ## Segurança Implementada
 
-- CSP (Content Security Policy) no HTML.
+- CSP (Content Security Policy).
 - `noopener noreferrer` em links externos.
-- Saneamento de texto e URLs no `script.js`.
-- Bloqueio de esquemas perigosos em links (`javascript:` etc.).
-- Sem uso de `innerHTML` para renderização de conteúdo dinâmico.
+- Sanitização de texto/URL no frontend antes de renderizar.
+- Validação de idioma e controle de rotas no backend.
 
 Observação:
-`nmap` e testes de rede dependem de proteção no servidor/infra (firewall, portas fechadas, WAF). O frontend sozinho não consegue bloquear varredura de portas.
+`nmap` e varreduras de rede dependem de proteção no servidor/infra (firewall, portas, WAF).
 
 ## Como Rodar Localmente
 
-Opção 1 (Python):
+1. Instale Node.js.
+2. No diretório do projeto, execute:
 
 ```bash
-python -m http.server 5500
+npm start
 ```
 
-Opção 2 (Node):
+3. Acesse:
+
+- `http://localhost:3000`
+
+Modo desenvolvimento (reinício automático):
 
 ```bash
-npx serve .
+npm run dev
 ```
-
-Depois acesse no navegador:
-
-- `http://localhost:5500/main.html` (Python)
-- ou URL exibida pelo `serve`.
 
 ## Personalização Rápida
 
-- Nome: editar em `main.html` (`YOUR NAME`).
-- E-mail e links sociais: editar em `main.html` (seção contato).
-- Conteúdo de textos e traduções: editar em `script.js` no objeto `localeContent`.
-- Projetos (EN/PT-BR): editar em `script.js` dentro de `localeContent.en.projects` e `localeContent["pt-BR"].projects`.
-
-## Deploy
-
-### Vercel (recomendado)
-
-Este projeto já está pronto para Vercel com:
-- `vercel.json` (headers de segurança HTTP)
-- rewrite da rota `/` para `main.html`
-
-Passos:
-1. Acesse https://vercel.com e faça login com GitHub.
-2. Clique em **Add New Project** e selecione `Suze021/landingPage`.
-3. Deploy padrão (framework: **Other** / static).
-4. Após o deploy, toda nova alteração em `main` publica automaticamente.
-
-### Nginx (alternativa)
-
-Se você hospedar em VPS/Nginx, use `nginx-security.conf` como base e ajuste:
-- `server_name`
-- `root`
-- certificados TLS
+- Nome e links de contato: `frontend/index.html`.
+- Textos/traduções/projetos: `backend/server/portfolioData.js`.
+- Estilo visual: `frontend/styles.css`.
+- Comportamento da UI: `frontend/js/app.js`.

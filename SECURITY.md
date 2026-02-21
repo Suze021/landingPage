@@ -1,12 +1,13 @@
 ## Security Notes
 
-This portfolio is now hardened on the client side (CSP, safer links, URL sanitization), but full pentest protection depends on hosting/server configuration.
+This portfolio is hardened on the client side and server side, but full pentest protection still depends on hosting/network configuration.
 
 ### What this frontend already does
-- Uses a restrictive Content Security Policy in `main.html`.
-- Sanitizes project URLs in `script.js` to block `javascript:` and invalid schemes.
+- Uses a restrictive Content Security Policy in `frontend/index.html`.
+- Sanitizes project URLs in `frontend/js/app.js` to block `javascript:` and invalid schemes.
 - Uses safe link attributes (`rel="noopener noreferrer"` for external links).
 - Avoids inline JS/CSS and avoids unsafe HTML insertion APIs.
+- Serves localized portfolio data from backend API (`/api/portfolio`) with language normalization.
 
 ### What must be enforced on hosting
 - Add HTTP security headers at the server/CDN level.
