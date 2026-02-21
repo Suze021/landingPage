@@ -1,4 +1,4 @@
-import { fetchPortfolioContent } from "../api/portfolioApi.js";
+﻿import { fetchPortfolioContent } from "../api/portfolioApi.js";
 
 const { createApp, computed, onMounted, ref, watch } = window.Vue;
 
@@ -53,29 +53,56 @@ const FALLBACK_CONTENT = Object.freeze({
         description: "A production-style app for managing user workflows with authentication, role access, and structured data operations.",
         live: "#",
         code: "#"
+      },
+      {
+        id: "02",
+        title: "Project Two",
+        type: "Analytics Dashboard",
+        stack: "TypeScript / Next.js / Charts",
+        description: "A metrics dashboard that aggregates API data, highlights KPI trends, and surfaces key actions through a clean, decision-focused UI.",
+        live: "#",
+        code: "#"
+      },
+      {
+        id: "03",
+        title: "Project Three",
+        type: "API + Admin Panel",
+        stack: "Express / JWT / SQL",
+        description: "An API-driven platform with a secure admin panel for managing records, validation flows, and exportable reports.",
+        live: "#",
+        code: "#"
+      },
+      {
+        id: "04",
+        title: "Project Four",
+        type: "Frontend Product Interface",
+        stack: "Next.js / CSS / Accessibility",
+        description: "A responsive interface optimized for speed and readability, with accessible interactions and component-driven architecture.",
+        live: "#",
+        code: "#"
       }
     ]
   },
   "pt-BR": {
     ui: {
-      documentTitle: "Seu Nome | Portfólio",
-      metaDescription: "Landing page minimalista de portfólio com seletor profissional de projetos.",
-      navAria: "Navegação principal",
+      documentTitle: "Seu Nome | PortfÃ³lio",
+      metaDescription: "Landing page minimalista de portfÃ³lio com seletor profissional de projetos.",
+      navAria: "NavegaÃ§Ã£o principal",
       navAbout: "Sobre",
       navProjects: "Projetos",
       navContact: "Contato",
-      languageAria: "Trocar o idioma do site para inglês",
+      languageAria: "Trocar o idioma do site para inglÃªs",
       languageButton: "EN",
-      heroTag: "Portfólio / Desenvolvedor de Software",
-      heroTitle: "Construindo software com foco e execução limpa.",
-      heroLead: "Esta é minha landing page pessoal para currículo e candidaturas. Ela inclui projetos selecionados, um perfil curto e canais diretos de contato.",
+      heroTag: "PortfÃ³lio / Desenvolvedor de Software",
+      heroTitle: "Construindo software com foco e execuÃ§Ã£o limpa.",
+      heroLead: "Esta Ã© minha landing page pessoal para currÃ­culo e candidaturas. Ela inclui projetos selecionados, um perfil curto e canais diretos de contato.",
       heroPrimaryCta: "Ver Projetos",
       heroSecondaryCta: "Entrar em Contato",
       aboutTitle: "Sobre",
-      aboutSubtitle: "Substitua este texto com seu contexto profissional, pontos fortes e o tipo de vaga que você procura.",
+      aboutSubtitle: "Substitua este texto com seu contexto profissional, pontos fortes e o tipo de vaga que vocÃª procura.",
       profileTitle: "Perfil",
-      profileParagraph1: "Meu foco é desenvolvimento de produtos práticos: arquitetura clara, APIs confiáveis e interfaces simples de entender e rápidas de usar.",
-      profileParagraph2: "Gosto de colaborar em equipe, iterar com velocidade e entregar funcionalidades com melhoria mensurável.",
+      profileParagraph1: "Meu foco Ã© desenvolvimento de produtos prÃ¡ticos: arquitetura clara, APIs confiÃ¡veis e interfaces simples de entender e rÃ¡pidas de usar.",
+      profileParagraph2: "Gosto de colaborar em equipe, iterar com velocidade e entregar funcionalidades com melhoria mensurÃ¡vel.",
       stackTitle: "Stack Principal",
       stackItems: [
         "JavaScript / TypeScript",
@@ -85,23 +112,50 @@ const FALLBACK_CONTENT = Object.freeze({
         "Git / Testes"
       ],
       projectsTitle: "Projetos Selecionados",
-      projectsSubtitle: "Clique em um projeto à esquerda para carregar os detalhes à direita, como um seletor de showcase profissional.",
+      projectsSubtitle: "Clique em um projeto Ã  esquerda para carregar os detalhes Ã  direita, como um seletor de showcase profissional.",
       selectorAria: "Seletor de projetos",
       projectLive: "Demo Online",
-      projectCode: "Código Fonte",
+      projectCode: "CÃ³digo Fonte",
       contactTitle: "Contato",
-      contactSubtitle: "Troque pelos seus links reais antes de publicar esta página.",
+      contactSubtitle: "Troque pelos seus links reais antes de publicar esta pÃ¡gina.",
       contactEmail: "E-mail",
       footerPrefix: "Copyright",
-      footerSuffix: "Portfólio minimalista."
+      footerSuffix: "PortfÃ³lio minimalista."
     },
     projects: [
       {
         id: "01",
         title: "Projeto Um",
-        type: "Aplicação Web Full Stack",
+        type: "AplicaÃ§Ã£o Web Full Stack",
         stack: "React / Node / PostgreSQL",
-        description: "Uma aplicação em padrão de produção para gerenciar fluxos de usuário com autenticação, controle de acesso por papel e operações de dados estruturadas.",
+        description: "Uma aplicaÃ§Ã£o em padrÃ£o de produÃ§Ã£o para gerenciar fluxos de usuÃ¡rio com autenticaÃ§Ã£o, controle de acesso por papel e operaÃ§Ãµes de dados estruturadas.",
+        live: "#",
+        code: "#"
+      },
+      {
+        id: "02",
+        title: "Projeto Dois",
+        type: "Dashboard Analitico",
+        stack: "TypeScript / Next.js / Graficos",
+        description: "Um dashboard de metricas que agrega dados de API, destaca tendencias de KPI e apresenta acoes-chave com interface limpa e orientada a decisao.",
+        live: "#",
+        code: "#"
+      },
+      {
+        id: "03",
+        title: "Projeto Tres",
+        type: "API + Painel Administrativo",
+        stack: "Express / JWT / SQL",
+        description: "Uma plataforma orientada por API com painel administrativo seguro para gerenciar registros, validacoes e relatorios exportaveis.",
+        live: "#",
+        code: "#"
+      },
+      {
+        id: "04",
+        title: "Projeto Quatro",
+        type: "Interface de Produto Frontend",
+        stack: "Next.js / CSS / Acessibilidade",
+        description: "Uma interface responsiva otimizada para velocidade e legibilidade, com interacoes acessiveis e arquitetura baseada em componentes.",
         live: "#",
         code: "#"
       }
@@ -366,4 +420,3 @@ createApp({
     };
   }
 }).mount("#app");
-
