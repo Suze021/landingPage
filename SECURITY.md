@@ -1,7 +1,5 @@
 ## Security Notes
 
-This portfolio is hardened on the client side and server side, but full pentest protection still depends on hosting/network configuration.
-
 ### What this frontend already does
 - Uses a restrictive Content Security Policy in `frontend/index.html`.
 - Sanitizes project URLs in `frontend/js/app.js` to block `javascript:` and invalid schemes.
