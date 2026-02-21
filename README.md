@@ -54,28 +54,22 @@ Landing page pessoal para currículo/recrutamento com visual minimalista, seleto
 Observação:
 `nmap` e varreduras de rede dependem de proteção no servidor/infra (firewall, portas, WAF).
 
-## Como Rodar Localmente
-
-1. Instale Node.js.
-2. No diretório do projeto, execute:
-
-```bash
-npm start
-```
-
-3. Acesse:
-
-- `http://localhost:3000`
-
-Modo desenvolvimento (reinício automático):
-
-```bash
-npm run dev
-```
-
 ## Personalização Rápida
 
 - Nome e links de contato: `frontend/index.html`.
 - Textos/traduções/projetos: `backend/server/portfolioData.js`.
 - Estilo visual: `frontend/styles.css`.
 - Comportamento da UI: `frontend/js/app.js`.
+
+## Política de Uso
+
+Este projeto é público para estudo de estrutura e referência técnica.
+
+Permissões:
+- Você pode usar este projeto como base conceitual para criar sua própria versão.
+- Você pode se inspirar na arquitetura, organização de pastas e abordagem visual.
+
+Restrições:
+- Não é permitido copiar e publicar este código original (total ou parcialmente) como se fosse seu.
+- Não é permitido redistribuir este repositório sem alterações substanciais.
+- Para uso como base, crie uma implementação própria e personalizada.
