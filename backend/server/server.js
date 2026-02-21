@@ -35,6 +35,14 @@ function setSecurityHeaders(res) {
   res.setHeader("Cross-Origin-Resource-Policy", "same-origin");
 }
 
+function redirect(res, location, statusCode = 308) {
+  res.writeHead(statusCode, {
+    Location: location,
+    "Cache-Control": "no-store"
+  });
+  res.end();
+}
+
 function sendJson(req, res, statusCode, payload) {
   const body = JSON.stringify(payload);
   res.writeHead(statusCode, {
@@ -158,6 +166,19 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
 
+  // Canonical URL policy: keep UI paths clean and hide internal "frontend" folder.
+  if (url.pathname === "/index.html" || url.pathname === "/frontend/index.html") {
+    redirect(res, "/");
+    return;
+  }
+
+  if (url.pathname.startsWith("/frontend/")) {
+    const cleanPath = url.pathname.replace(/^\/frontend/, "") || "/";
+    const destination = `${cleanPath}${url.search}`;
+    redirect(res, destination);
+    return;
+  }
+
   if (url.pathname.startsWith("/api/")) {
     const handled = await handleApi(req, res, url);
     if (!handled) {
@@ -172,4 +193,3 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
   process.stdout.write(`Server running at http://${HOST}:${PORT}\n`);
 });
-
