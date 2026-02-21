@@ -2,9 +2,10 @@
   "name": "landing-page",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio landing page with separated frontend API client and backend server.",
+  "description": "Portfolio landing page with separated index API client and server layer.",
   "scripts": {
-    "start": "node backend/server/server.js",
-    "dev": "node --watch backend/server/server.js"
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
   }
 }
+

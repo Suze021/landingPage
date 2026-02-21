@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/frontend/index.html"
+      "destination": "/index/index.html"
     }
   ],
   "headers": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "source": "/frontend/(index\\.html|styles\\.css|js/app\\.js|api/portfolioApi\\.js)",
+      "source": "/index/(index\\.html|styles\\.css|js/app\\.js|api/portfolioApi\\.js)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -51,3 +51,4 @@
     }
   ]
 }
+

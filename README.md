@@ -1,4 +1,4 @@
-﻿# Landing Page de Portfólio (EN/PT-BR)
+# Landing Page de Portfólio (EN/PT-BR)
 
 Landing page pessoal para currículo/recrutamento com visual minimalista, seletor de projetos e troca de idioma em tempo real.
 
@@ -7,7 +7,7 @@ Landing page pessoal para currículo/recrutamento com visual minimalista, seleto
 - Apresentar perfil profissional de forma direta.
 - Destacar projetos com descrição, stack e links.
 - Funcionar bem em desktop e celular.
-- Separar claramente camadas de frontend e backend.
+- Separar claramente camadas de index e server.
 
 ## Stack
 
@@ -18,24 +18,24 @@ Landing page pessoal para currículo/recrutamento com visual minimalista, seleto
 
 ## Estrutura do Projeto
 
-- `frontend/index.html`: estrutura da interface.
-- `frontend/styles.css`: estilos e responsividade.
-- `frontend/js/app.js`: estado Vue e renderização da UI.
-- `frontend/api/portfolioApi.js`: client de API do frontend.
-- `backend/server/server.js`: servidor HTTP e rotas da API.
-- `backend/server/portfolioData.js`: conteúdo de textos/projetos por idioma.
+- `index/index.html`: estrutura da interface.
+- `index/styles.css`: estilos e responsividade.
+- `index/js/app.js`: estado Vue e renderização da UI.
+- `index/api/portfolioApi.js`: client de API da camada index.
+- `server/server.js`: servidor HTTP e rotas da API.
+- `server/portfolioData.js`: conteúdo de textos/projetos por idioma.
 - `SECURITY.md`: resumo de hardening e limites de segurança.
 - `nginx-security.conf`: baseline para hardening em Nginx (opcional).
 
 ## Separação Front e Back
 
-- Frontend (API):
-  - O frontend não carrega mais conteúdo hardcoded principal da página.
-  - Ele consulta `GET /api/portfolio?lang=en|pt-BR` via `frontend/api/portfolioApi.js`.
+- Index (API):
+  - A camada index não carrega mais conteúdo hardcoded principal da página.
+  - Ele consulta `GET /api/portfolio?lang=en|pt-BR` via `index/api/portfolioApi.js`.
 
-- Backend (Server):
-  - O servidor fica em `backend/server/server.js`.
-  - Ele entrega arquivos estáticos do `frontend/` e responde as rotas `/api/*`.
+- Server (Backend):
+  - O servidor fica em `server/server.js`.
+  - Ele entrega arquivos estáticos do `index/` e responde as rotas `/api/*`.
 
 ## Funcionalidades
 
@@ -48,18 +48,18 @@ Landing page pessoal para currículo/recrutamento com visual minimalista, seleto
 
 - CSP (Content Security Policy).
 - `noopener noreferrer` em links externos.
-- Sanitização de texto/URL no frontend antes de renderizar.
-- Validação de idioma e controle de rotas no backend.
+- Sanitização de texto/URL na camada index antes de renderizar.
+- Validação de idioma e controle de rotas na camada server.
 
 Observação:
 `nmap` e varreduras de rede dependem de proteção no servidor/infra (firewall, portas, WAF).
 
 ## Personalização Rápida
 
-- Nome e links de contato: `frontend/index.html`.
-- Textos/traduções/projetos: `backend/server/portfolioData.js`.
-- Estilo visual: `frontend/styles.css`.
-- Comportamento da UI: `frontend/js/app.js`.
+- Nome e links de contato: `index/index.html`.
+- Textos/traduções/projetos: `server/portfolioData.js`.
+- Estilo visual: `index/styles.css`.
+- Comportamento da UI: `index/js/app.js`.
 
 ## Política de Uso
 
@@ -73,3 +73,4 @@ Restrições:
 - Não é permitido copiar e publicar este código original (total ou parcialmente) como se fosse seu.
 - Não é permitido redistribuir este repositório sem alterações substanciais.
 - Para uso como base, crie uma implementação própria e personalizada.
+

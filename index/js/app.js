@@ -1,4 +1,4 @@
-﻿import { fetchPortfolioContent } from "../api/portfolioApi.js";
+import { fetchPortfolioContent } from "../api/portfolioApi.js";
 
 const { createApp, computed, onMounted, ref, watch } = window.Vue;
 

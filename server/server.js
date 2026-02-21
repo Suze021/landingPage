@@ -8,7 +8,7 @@ const { getPortfolioContent, normalizeLanguage } = require("./portfolioData");
 
 const HOST = process.env.HOST || "0.0.0.0";
 const PORT = Number(process.env.PORT || 3000);
-const FRONTEND_ROOT = path.resolve(__dirname, "../../frontend");
+const INDEX_ROOT = path.resolve(__dirname, "../index");
 
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
@@ -125,9 +125,9 @@ async function handleApi(req, res, url) {
 async function handleStatic(req, res, url) {
   const pathname = decodeURIComponent(url.pathname);
   const relativePath = pathname === "/" ? "/index.html" : pathname;
-  const resolvedPath = path.resolve(path.join(FRONTEND_ROOT, `.${relativePath}`));
+  const resolvedPath = path.resolve(path.join(INDEX_ROOT, `.${relativePath}`));
 
-  if (!resolvedPath.startsWith(FRONTEND_ROOT)) {
+  if (!resolvedPath.startsWith(INDEX_ROOT)) {
     sendText(req, res, 403, "Forbidden");
     return;
   }
@@ -149,7 +149,7 @@ async function handleStatic(req, res, url) {
   }
 
   if (!path.extname(relativePath)) {
-    await sendFile(req, res, path.join(FRONTEND_ROOT, "index.html"));
+    await sendFile(req, res, path.join(INDEX_ROOT, "index.html"));
     return;
   }
 
@@ -166,14 +166,20 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
 
-  // Canonical URL policy: keep UI paths clean and hide internal "frontend" folder.
-  if (url.pathname === "/index.html" || url.pathname === "/frontend/index.html") {
+  // Canonical URL policy: keep UI paths clean and hide internal "index" folder.
+  if (
+    url.pathname === "/index.html" ||
+    url.pathname === "/index/index.html" ||
+    url.pathname === "/frontend/index.html"
+  ) {
     redirect(res, "/");
     return;
   }
 
-  if (url.pathname.startsWith("/frontend/")) {
-    const cleanPath = url.pathname.replace(/^\/frontend/, "") || "/";
+  if (url.pathname.startsWith("/index/") || url.pathname.startsWith("/frontend/")) {
+    const cleanPath = url.pathname
+      .replace(/^\/index/, "")
+      .replace(/^\/frontend/, "") || "/";
     const destination = `${cleanPath}${url.search}`;
     redirect(res, destination);
     return;
@@ -193,3 +199,4 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, HOST, () => {
   process.stdout.write(`Server running at http://${HOST}:${PORT}\n`);
 });
+
