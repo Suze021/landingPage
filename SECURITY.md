@@ -16,7 +16,7 @@ This portfolio is now hardened on the client side (CSP, safer links, URL sanitiz
 - Block access to hidden files and sensitive paths.
 - Put the site behind a firewall/WAF (Cloudflare, AWS WAF, Azure WAF, etc.).
 
-Use `nginx-security.conf` as a baseline if you deploy behind Nginx.
+Use `vercel.json` if you deploy on Vercel, or `nginx-security.conf` as a baseline for Nginx.
 
 ### Important limitation
 `nmap` scans network ports/services. That cannot be blocked by frontend code alone.

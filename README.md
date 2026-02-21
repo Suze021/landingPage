@@ -79,10 +79,21 @@ Depois acesse no navegador:
 
 ## Deploy
 
-Para produção, publique como site estático e aplique headers de segurança no servidor/CDN.
+### Vercel (recomendado)
 
-Se usar Nginx, utilize `nginx-security.conf` como base e ajuste:
+Este projeto já está pronto para Vercel com:
+- `vercel.json` (headers de segurança HTTP)
+- rewrite da rota `/` para `main.html`
 
+Passos:
+1. Acesse https://vercel.com e faça login com GitHub.
+2. Clique em **Add New Project** e selecione `Suze021/landingPage`.
+3. Deploy padrão (framework: **Other** / static).
+4. Após o deploy, toda nova alteração em `main` publica automaticamente.
+
+### Nginx (alternativa)
+
+Se você hospedar em VPS/Nginx, use `nginx-security.conf` como base e ajuste:
 - `server_name`
 - `root`
 - certificados TLS
