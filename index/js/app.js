@@ -7,7 +7,7 @@ const SUPPORTED_LANGUAGES = new Set(["en", "pt-BR"]);
 const FALLBACK_CONTENT = Object.freeze({
   en: {
     ui: {
-      documentTitle: "Your Name | Portfolio",
+      documentTitle: "Guilherme Oliveira | Portfolio",
       metaDescription: "Minimal portfolio landing page with a professional project selector.",
       navAria: "Main navigation",
       navAbout: "About",
@@ -85,7 +85,7 @@ const FALLBACK_CONTENT = Object.freeze({
   },
   "pt-BR": {
     ui: {
-      documentTitle: "Seu Nome | Portfólio",
+      documentTitle: "Guilherme Oliveira | Portfólio",
       metaDescription: "Landing page minimalista de portfólio com seletor profissional de projetos.",
       navAria: "Navegação principal",
       navAbout: "Sobre",
